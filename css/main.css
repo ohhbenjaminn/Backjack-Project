@@ -1,38 +1,65 @@
 html, * {
-    box-sizing: border-box;
-  }
-  
-  html, body {
-    height: 100%;
-  }
-  
-  .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    border: 4px dotted grey;
-  }
-  
-  button {
-    display: block;
-    margin: 10px auto;
-    padding: 10px;
-    font-size: 16px;
-    color: grey;
-    border: 1px solid grey;
-    border-radius: 4px;
-    outline: none;
-  }
-  
-  button:hover {
-    background-color: grey;
-    color: white;
-  }
+  box-sizing: border-box;
+}
 
-body {
-    background: url(https://media.istockphoto.com/vectors/poker-table-background-in-green-color-vector-id1218355494?k=20&m=1218355494&s=170667a&w=0&h=jja0ukHGhqbVljOP7xaSJzIUnpUJ056VDI0Bnnshb9U=);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    
+html, body {
+  height: auto;
+  /* height: 100%; */
+
+  background: url(https://media.istockphoto.com/vectors/poker-table-background-in-green-color-vector-id1218355494?k=20&m=1218355494&s=170667a&w=0&h=jja0ukHGhqbVljOP7xaSJzIUnpUJ056VDI0Bnnshb9U=);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;  
+}
+h3{
+  color: white;
+  text-align: center;
+  font-size: 50px;
+  margin: 0 auto;
+}
+h4 {
+  color: black;
+  text-align: center;
+  font-size: 20px;
+  margin: 0 auto;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  border: 4px dotted grey;
+}
+.player-1 {
+  display: flex;
+  padding: 5px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  flex: 1;
+  height: 350px;
+  text-align: center;
+  align-items: flex-end
+}
+#master-deck-container {
+  display: none;
+  padding: 100px;
+}
+#shuffled-deck-container {
+  display: none;
+}
+
+button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  font-size: 16px;
+  color: grey;
+  border: 1px solid grey;
+  border-radius: 4px;
+  outline: none;
+}
+
+button:hover {
+  background-color: grey;
+  color: white;
 }

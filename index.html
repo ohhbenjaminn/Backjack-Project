@@ -12,13 +12,31 @@
     <h3>Black<span style="color: red">jack</span></h3>
     <h4>Winner Winner Chicken Dinner</h4>
     <!-- <h4>W<span style="color: black">inner</span> W<span style="color: black">inner</span> <span style="color: black">Chicken Dinner</span></h4> -->
-    <section id="master-deck-container" class="card-container"></section>
+    
+
+    <div class="round-score">
+        <div id="dealer-score">
+            <h2>Dealer:  <span class="dealer-result">0</span></h2>
+        </div>
+
+        <div id="player-score">
+            <h2>You: <span class="player-result">0</span></h2>
+        </div>    
+    </div>
+
+    <div class="playing-mat">
+
+    <section id="player-random-shuffled-cards" class="card-container"></section>
+
+    <section id="dealer-random-shuffled-cards" class="card-container"></section>
+
+    </div>
     
     <div class="container">
       <div class="dealer"></div>
       <div class="display"></div>
       <div class="player-1">
-        <button>RE-SHUFFLE DECK/Restart</button>
+        <button id="restart">RE-SHUFFLE DECK/Restart</button>
         <button id="deal">Deal</button>
         <button id="hit">Hit</button>
         <button id="stay">Stay</button>
@@ -30,6 +48,6 @@
     <!-- <h3>Shuffled Deck</h3> -->
     <section id="shuffled-deck-container" class="card-container">
     </section>
-    <section id="random-shuffled-cards" class="card-container"></section>
+    <section id="master-deck-container" class="card-container"></section>
   </body>
 </html>

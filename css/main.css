@@ -28,8 +28,10 @@ h4 {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  border: 4px dotted grey;
-}
+  border: 4px  black; 
+  text-align: center;
+ } 
+
 .player-1 {
   display: flex;
   padding: 5px;
@@ -38,7 +40,8 @@ h4 {
   flex: 1;
   height: 350px;
   text-align: center;
-  align-items: flex-end
+  align-items: flex-end;
+  align-content: center;
 }
 #master-deck-container {
   display: none;
@@ -48,12 +51,20 @@ h4 {
   display: none;
 }
 
+.round-score {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+  padding: 30px;
+  color: white;
+}
+
 button {
   display: block;
   margin: 10px auto;
   padding: 10px;
   font-size: 16px;
-  color: grey;
+  color: white;
   border: 1px solid grey;
   border-radius: 4px;
   outline: none;
@@ -61,5 +72,18 @@ button {
 
 button:hover {
   background-color: grey;
-  color: white;
+  color: black;
+}
+
+#deal {
+  background-color: #068ef3;
+}
+#hit{
+  background-color: #4CAF50; 
+}
+#stay{
+  background-color: #FF0000; 
+}
+#restart {
+  background-color: #ffc410; 
 }

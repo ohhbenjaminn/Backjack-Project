@@ -12,7 +12,10 @@ let shuffledDeck;
 /*----- cached element references -----*/
 const shuffledContainer = document.getElementById('shuffled-deck-container');
 
-const randomCards = document.getElementById('random-shuffled-cards');
+const playerRandomCards = document.getElementById('player-random-shuffled-cards');
+const dealerRandomCards = document.getElementById('dealer-random-shuffled-cards');
+let dealerResult = document.querySelector(".dealer-result"); 
+let playerResult = document.querySelector(".player-result");
 
 /*----- event listeners -----*/
 document.querySelector('button').addEventListener('click', renderNewShuffledDeck);
@@ -23,6 +26,12 @@ document.querySelector('#stay').addEventListener('click', stayFinish);
 
 /*----- Remove event listeners -----*/
 // document.removeEventListener('#deal', 'click', true);
+
+let playerSum = 0;
+let dealerSum = 0;
+let counter = 0;
+let playerCurrentHand = [];
+let dealerCurrentHand = [];
 
 /*----- functions -----*/
 function getNewShuffledDeck() {
@@ -35,7 +44,6 @@ function getNewShuffledDeck() {
     // Note the [0] after splice - this is because splice always returns an array and we just want the card object in that array
     newShuffledDeck.push(tempDeck.splice(rndIdx, 1)[0]);
   }
-  console.log('shuffled deck', newShuffledDeck)
   return newShuffledDeck;
 }
 
@@ -43,12 +51,25 @@ function renderNewShuffledDeck() {
   // Create a copy of the masterDeck (leave masterDeck untouched!)
   shuffledDeck = getNewShuffledDeck();
   renderDeckInContainer(shuffledDeck, shuffledContainer);
+
+    playerSum = 0;
+    dealerSum = 0;
+    counter = 0;
+    playerCurrentHand = [];
+    dealerCurrentHand = [];
+
+    playerRandomCards.innerHTML = '';
+    dealerRandomCards.innerHTML = '';
+    dealerResult.innerHTML = dealerSum;
+    playerResult.innerHTML = playerSum;
 }
 
 function renderDeckInContainer(deck, container) {
   container.innerHTML = '';
   // Let's build the cards as a string of HTML
   let cardsHtml = '';
+  //----
+
   deck.forEach(function(card) {
     cardsHtml += `<div class="card ${card.face}"></div>`;
   });
@@ -76,64 +97,82 @@ function buildMasterDeck() {
 }
 renderNewShuffledDeck();
 
-let sum = 0;
-let counter = 0;
-let playerCurrentHand = [];
-let dealerCurrentHand = [];
-
-let playerHandSum = () => playerCurrentHand.reduce((a, b) => a + b, 0);
-let dealerHandSum = () => dealerCurrentHand.reduce((a, b) => a + b, 0);
-
-function bust() {
-  if(playerHandSum() > 21){
-    alert(" YOU LOSE, BUSTED!!")
-  };
-  if(dealerHandSum() > 21){
-    alert("YOU WIN, DEALER BUST!!")
-  };
-}
-
 function dealMe () {
-   playerCurrentHand.push(shuffledDeck[0].value, shuffledDeck[1].value);
-   dealerCurrentHand.push(shuffledDeck[2].value, shuffledDeck[3].value);
-   counter = 3
-   if(playerHandSum() === 21){
-     alert("WINNER WINNER CHICKEN DINNER!!! YOU GOT 21!!!");
-   }
-   if(dealerHandSum() === 21){
-     alert("YOU LOSE, DEALER GOT 21!!!");
-   }
+   playerCurrentHand.push(shuffledDeck[0], shuffledDeck[1]);
+   playerSum += shuffledDeck[0].value + shuffledDeck[1].value;
 
-}
+   dealerCurrentHand.push(shuffledDeck[2], shuffledDeck[3]);
+   dealerSum += shuffledDeck[2].value + shuffledDeck[3].value;
+   counter = 3
+    dealerResult.innerHTML = dealerSum;
+    playerResult.innerHTML = playerSum;
+
+    playerCurrentHand.forEach(function(card) {
+        playerRandomCards.innerHTML += `<div class="card ${card.face}"></div>`;
+    });
+
+    dealerCurrentHand.forEach(function(card) {
+        dealerRandomCards.innerHTML += `<div class="card ${card.face}"></div>`;
+    })
+
+  if(playerSum === 21){
+    setTimeout(() => {
+        alert("WINNER WINNER CHICKEN DINNER!!! YOU GOT 21!!!")
+    }, 100);
+  }
+  if(dealerSum === 21){
+    setTimeout(() => {
+        alert("YOU LOSE, DEALER GOT 21!!!")
+    }, 100);
+    
+  }
+};
 
 function hitCards() {
-  counter+= 1
-  playerCurrentHand.push(shuffledDeck[counter].value)
-  // playerHandSum()
-  if(playerHandSum() > 21){
-    // alert("BUST!!!")
-    bust()
-  }
-  if(playerHandSum() === 21){
-    alert("WINNER WINNER CHICKEN DINNER!!! YOU GOT 21!!!");
-  }
+    counter+= 1
+    playerCurrentHand.push(shuffledDeck[counter]);
+    playerSum += shuffledDeck[counter].value;
+    
+    playerRandomCards.innerHTML += `<div class="card ${shuffledDeck[counter].face}"></div>`
+    
+    playerResult.innerHTML = playerSum;
+
+    if(playerSum > 21){
+        setTimeout(() => {
+            alert("BUST!!!")
+        }, 100)
+        
+    }
+    if(playerSum === 21){
+        setTimeout(() => {
+            alert("WINNER WINNER CHICKEN DINNER!!! YOU GOT 21!!!")
+        }, 100);
+    }
 };
 
 function dealerHit(){
   counter+= 1
-  dealerCurrentHand.push(shuffledDeck[counter].value)
-  // dealerHandSum()
-  if(dealerHandSum() > 21){
-    // alert("BUST!!!")
-    bust()
-  }
-  if(dealerHandSum() === 21){
-    alert("YOU LOSE, DEALER GOT 21!!!");
-  }
-}
+  dealerCurrentHand.push(shuffledDeck[counter])
+  dealerSum += shuffledDeck[counter].value;
 
+  dealerResult.innerHTML = dealerSum;
+  
+  if(dealerSum > 21){
+      setTimeout(() => {
+        alert("BUST!!!")
+    }, 100)
+      
+    }
+    if(dealerSum === 21){
+        setTimeout(() => {
+            alert("YOU LOSE, DEALER GOT 21!!!")
+        }, 100)
+    }
 
+    dealerRandomCards.innerHTML += `<div class="card ${shuffledDeck[counter].face}"></div>`
+    
 
+};
 
 // function sumOfCurrentHand() {
 //   let playerHandSum = playerCurrentHand.reduce((a, b) => a + b, 0);
@@ -143,18 +182,10 @@ function dealerHit(){
 //when clicked the function will automatically have the dealer keep hitting until they reach >= 17
 
 function stayFinish(){
-  if (dealerHandSum() > 17) {
+  if (dealerSum > 17) {
     return;
   }
   dealerHit();
   stayFinish()
 };
 
-function bust() {
-  if(playerHandSum() > 21){
-    alert(" YOU LOSE, BUSTED!!")
-  };
-  if(dealerHandSum() > 21){
-    alert("YOU WIN, DEALER BUST!!")
-  };
-}

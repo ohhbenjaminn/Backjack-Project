@@ -6,19 +6,24 @@ html, body {
   height: auto;
   /* height: 100%; */
 
-  background: url(https://media.istockphoto.com/vectors/poker-table-background-in-green-color-vector-id1218355494?k=20&m=1218355494&s=170667a&w=0&h=jja0ukHGhqbVljOP7xaSJzIUnpUJ056VDI0Bnnshb9U=);
+  background: url(https://img.freepik.com/free-photo/rustic-brick-wall-background_53876-92955.jpg?w=1480);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;  
+  height:100%;
+
 }
 h3{
   color: white;
   text-align: center;
   font-size: 50px;
   margin: 0 auto;
+  border-style: groove;
+  border-width: 8px;
+  width: 400px;
 }
 h4 {
-  color: black;
+  color: white;
   text-align: center;
   font-size: 20px;
   margin: 0 auto;
@@ -51,18 +56,26 @@ h4 {
   display: none;
 }
 
+.playing-mat {
+  background: url(https://p7.hiclipart.com/preview/539/436/896/chinese-wind-pattern-red-background.jpg);
+  background-position: center;
+  background-size: cover;
+  height: auto;
+}
+
 .round-score {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-around;
   padding: 30px;
   color: white;
+  font-size: 30px;
 }
 
 button {
   display: block;
   margin: 10px auto;
-  padding: 10px;
+  padding: 15px 28px;
   font-size: 16px;
   color: white;
   border: 1px solid grey;
@@ -76,7 +89,7 @@ button:hover {
 }
 
 #deal {
-  background-color: #068ef3;
+  background-color: #0d85df;
 }
 #hit{
   background-color: #4CAF50; 

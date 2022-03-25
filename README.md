@@ -1,5 +1,4 @@
 # A Gentlemans Game: Blackjack
-Your game's title>: A description of your game. Background info of the game is a nice touch.
 
 ## Wireframe:
 ![Blackjack 1 v 1@2x](https://user-images.githubusercontent.com/43531474/160112139-e1e12e60-79fd-4b43-ae11-c7ea6740adaa.png)

@@ -24,7 +24,7 @@ Players compete to obtain the total sum of the card values in their hand as clos
 
 - Good luck. Have fun and don’t forget to shout “Winner winner chicken dinner” when you win!
 
-#####  [Lets play](https://www.google.com)
+#####  [Lets play](https://ohhbenjaminn.github.io/Backjack-Project/)
 
 
 ##Next Steps:
